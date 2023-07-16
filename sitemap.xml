@@ -4,8 +4,41 @@
   
     
       <url>
-            <loc>https://youketu123.github.io/examples/blowfish-lite/</loc>
-            <lastmod>2022-11-07T00:00:00+00:00</lastmod>
+            <loc>https://youketu123.github.io/teaching/2023-3/</loc>
+            <lastmod>2023-07-16T00:00:00+00:00</lastmod>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+  
+    
+      <url>
+            <loc>https://youketu123.github.io/notes/causal-forest/</loc>
+            <lastmod>2023-07-16T00:00:00+00:00</lastmod>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://youketu123.github.io/data/</loc>
+            <lastmod>2023-07-16T00:00:00+00:00</lastmod>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+  
+    
+  
+    
+      <url>
+            <loc>https://youketu123.github.io/notes/github-page/</loc>
+            <lastmod>2023-07-16T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
@@ -14,7 +47,7 @@
     
       <url>
             <loc>https://youketu123.github.io/</loc>
-            <lastmod>2022-11-07T00:00:00+00:00</lastmod>
+            <lastmod>2023-07-16T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
@@ -22,8 +55,8 @@
   
     
       <url>
-            <loc>https://youketu123.github.io/examples/</loc>
-            <lastmod>2022-11-07T00:00:00+00:00</lastmod>
+            <loc>https://youketu123.github.io/data/data1/</loc>
+            <lastmod>2023-07-16T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
@@ -31,206 +64,8 @@
   
     
       <url>
-            <loc>https://youketu123.github.io/examples/blowfish-artist/</loc>
-            <lastmod>2022-11-06T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/examples/blowfish-lowkey/</loc>
-            <lastmod>2022-11-06T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/samples/multiple-authors/</loc>
-            <lastmod>2022-10-12T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/samples/</loc>
-            <lastmod>2022-10-12T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/samples/thumbnail_sample/</loc>
-            <lastmod>2022-09-26T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/docs/</loc>
-            <lastmod>2022-01-19T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/docs/welcome/</loc>
-            <lastmod>2022-01-19T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/examples/repo-blowfish-lite/</loc>
-            <lastmod>2021-11-07T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/examples/repo-blowfish-artist/</loc>
-            <lastmod>2021-11-06T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/examples/repo-blowfish-lowkey/</loc>
-            <lastmod>2021-11-06T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/examples/blowfish-template/</loc>
-            <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/examples/blowfish-template-repo/</loc>
-            <lastmod>2020-11-06T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/docs/installation/</loc>
-            <lastmod>2020-08-16T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/docs/getting-started/</loc>
-            <lastmod>2020-08-15T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/docs/configuration/</loc>
-            <lastmod>2020-08-14T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/samples/icons/</loc>
-            <lastmod>2022-03-09T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/docs/homepage-layout/</loc>
-            <lastmod>2020-08-13T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/docs/front-matter/</loc>
-            <lastmod>2020-08-12T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/docs/thumbnails/</loc>
-            <lastmod>2020-08-12T00:00:00+00:00</lastmod>
+            <loc>https://youketu123.github.io/notes/</loc>
+            <lastmod>2023-07-16T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
@@ -244,60 +79,35 @@
   
     
       <url>
-            <loc>https://youketu123.github.io/docs/shortcodes/</loc>
-            <lastmod>2020-08-11T00:00:00+00:00</lastmod>
+            <loc>https://youketu123.github.io/teaching/</loc>
+            <lastmod>2023-07-16T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
     
   
     
-  
-    
-  
-    
-  
-    
       <url>
-            <loc>https://youketu123.github.io/docs/multi-author/</loc>
-            <lastmod>2020-08-10T00:00:00+00:00</lastmod>
+            <loc>https://youketu123.github.io/teaching/2023-2/</loc>
+            <lastmod>2023-07-15T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
     
   
     
-  
-    
       <url>
-            <loc>https://youketu123.github.io/docs/partials/</loc>
-            <lastmod>2020-08-10T00:00:00+00:00</lastmod>
+            <loc>https://youketu123.github.io/teaching/2023-1/</loc>
+            <lastmod>2023-06-17T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
     
   
     
-  
-    
-  
-    
       <url>
-            <loc>https://youketu123.github.io/docs/content-examples/</loc>
-            <lastmod>2020-08-09T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/docs/series/</loc>
-            <lastmod>2020-08-09T00:00:00+00:00</lastmod>
+            <loc>https://youketu123.github.io/teaching/2022-1/</loc>
+            <lastmod>2022-07-01T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
@@ -307,43 +117,39 @@
   
     
       <url>
-            <loc>https://youketu123.github.io/docs/advanced-customisation/</loc>
-            <lastmod>2020-08-08T00:00:00+00:00</lastmod>
+            <loc>https://youketu123.github.io/teaching/2021-1/</loc>
+            <lastmod>2021-10-01T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
-    
-  
-    
-  
-    
-  
-    
-  
     
   
     
       <url>
-            <loc>https://youketu123.github.io/docs/hosting-deployment/</loc>
-            <lastmod>2020-08-07T00:00:00+00:00</lastmod>
+            <loc>https://youketu123.github.io/teaching/2020-2/</loc>
+            <lastmod>2020-10-02T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
-    
-  
-    
-  
-    
-  
     
   
     
       <url>
-            <loc>https://youketu123.github.io/docs/firebase-views/</loc>
-            <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+            <loc>https://youketu123.github.io/teaching/2020-1/</loc>
+            <lastmod>2020-10-01T00:00:00+00:00</lastmod>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
+    
+  
+    
+      <url>
+            <loc>https://youketu123.github.io/about/</loc>
+            <changefreq>always</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
     
   
     
@@ -356,8 +162,7 @@
   
     
       <url>
-            <loc>https://youketu123.github.io/samples/markdown/</loc>
-            <lastmod>2019-03-11T00:00:00+00:00</lastmod>
+            <loc>https://youketu123.github.io/research/</loc>
             <changefreq>always</changefreq>
             <priority>0.5</priority>
           </url>
@@ -365,127 +170,6 @@
   
     
   
-    
-      <url>
-            <loc>https://youketu123.github.io/samples/rich-content/</loc>
-            <lastmod>2019-03-10T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      
-    
-  
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/samples/mathematical-notation/</loc>
-            <lastmod>2019-03-08T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/samples/charts/</loc>
-            <lastmod>2019-03-06T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/samples/diagrams-flowcharts/</loc>
-            <lastmod>2019-03-06T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/samples/emoji/</loc>
-            <lastmod>2019-03-05T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/guides/</loc>
-            <lastmod>1987-12-22T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/guides/template/</loc>
-            <lastmod>1987-12-22T00:00:00+00:00</lastmod>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/users/</loc>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/posts/</loc>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
-    
-  
-    
-  
-    
-      <url>
-            <loc>https://youketu123.github.io/posts/storm-inequality/</loc>
-            <changefreq>always</changefreq>
-            <priority>0.5</priority>
-          </url>
     
   
 </urlset>

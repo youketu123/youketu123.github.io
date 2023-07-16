@@ -7,14 +7,44 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2023 Jie Yang</copyright>
-    <atom:link href="https://youketu123.github.io/tags/stata/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://youketu123.github.io/tags/stata/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Notes</title>
-      <link>https://youketu123.github.io/users/</link>
+      <title>Causal Forest</title>
+      <link>https://youketu123.github.io/notes/causal-forest/</link>
+      <pubDate>Sun, 16 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://youketu123.github.io/notes/causal-forest/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Nightlight Data</title>
+      <link>https://youketu123.github.io/data/data1/</link>
+      <pubDate>Sun, 16 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://youketu123.github.io/data/data1/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>2021.10-2022.01 </title>
+      <link>https://youketu123.github.io/teaching/2021-1/</link>
+      <pubDate>Fri, 01 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://youketu123.github.io/teaching/2021-1/</guid>
+      <description> 富山大学・経済学部「持続可能な経済成長に関するデータ分析特別研究」(With Prof. Jun Ma) # </description>
+      
+    </item>
+    
+    <item>
+      <title>Research</title>
+      <link>https://youketu123.github.io/research/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://youketu123.github.io/users/</guid>
-      <description>Blowfish user? To add your site to this list, submit a pull request. Website Details nunocoracao.com Personal site - Theme author madoke.org Personal site code-chimp.com Personal site mucahitkurtlar.github.io Personal site brendanwallace.</description>
+      <guid>https://youketu123.github.io/research/</guid>
+      <description>PAPERS # 2023 # Storm &amp;amp; Inequality (Working on) # The Dark Side of Storm: Nightlight Data Analysis of the Relationship between Climate Disaster and Inequality (With Tembata Kaori and Kenji Takeuchi)</description>
       
     </item>
     
