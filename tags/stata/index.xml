@@ -7,23 +7,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2023 Jie Yang</copyright>
-    <lastBuildDate>Sun, 16 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://youketu123.github.io/tags/stata/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://youketu123.github.io/tags/stata/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spatial Econometrics</title>
+      <link>https://youketu123.github.io/notes/spatial/</link>
+      <pubDate>Mon, 17 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://youketu123.github.io/notes/spatial/</guid>
+      <description> Moran&amp;rsquo;s test for spatial autocorrelation
+Stata command: estat moran Testing for global spatial autocorrelation in Stata </description>
+      
+    </item>
+    
     <item>
       <title>Causal Forest</title>
       <link>https://youketu123.github.io/notes/causal-forest/</link>
       <pubDate>Sun, 16 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>https://youketu123.github.io/notes/causal-forest/</guid>
-      <description></description>
+      <description> Generalized random forests
+Package grf in R </description>
       
     </item>
     
     <item>
       <title>Nightlight Data</title>
-      <link>https://youketu123.github.io/data/data1/</link>
+      <link>https://youketu123.github.io/posts/data1/</link>
       <pubDate>Sun, 16 Jul 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://youketu123.github.io/data/data1/</guid>
+      <guid>https://youketu123.github.io/posts/data1/</guid>
       <description></description>
       
     </item>
