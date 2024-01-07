@@ -62,7 +62,7 @@
   
   
   <meta property="og:title" content="Nightlight Data" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="Related R packages # library(terra) # spatial data analysis package library(tidyverse) # data processing package library(sf) # geodata encoding package library(fs) # file system operation package To begin with # We need the following files for the data processing." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://youketu123.github.io/posts/data1/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-07-16T00:00:00+00:00" />
@@ -70,7 +70,7 @@
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Nightlight Data"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="Related R packages # library(terra) # spatial data analysis package library(tidyverse) # data processing package library(sf) # geodata encoding package library(fs) # file system operation package To begin with # We need the following files for the data processing."/>
 
   
   <script type="application/ld+json">
@@ -81,7 +81,7 @@
     "name": "Nightlight Data",
     "headline": "Nightlight Data",
     
-    
+    "abstract": "Related R packages # library(terra) # spatial data analysis package library(tidyverse) # data processing package library(sf) # geodata encoding package library(fs) # file system operation package To begin with # We need the following files for the data processing.",
     "inLanguage": "en",
     "url" : "https:\/\/youketu123.github.io\/posts\/data1\/",
     "author" : {
@@ -97,7 +97,7 @@
     "keywords": ["Stata","R"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "0"
+    "wordCount": "1208"
   }]
   </script>
 
@@ -695,7 +695,398 @@
 
 
         <div class="max-w-prose mb-20">
+          <div id="related-r-packages" class="anchor"></div>
+<h1 class="relative group">Related R packages 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#related-r-packages" aria-label="Anchor">#</a></span>        
+    
+</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">library(terra) # spatial data analysis package
+</span></span><span class="line"><span class="cl">library(tidyverse) # data processing package
+</span></span><span class="line"><span class="cl">library(sf) # geodata encoding package
+</span></span><span class="line"><span class="cl">library(fs) # file system operation package
+</span></span></code></pre></div><div id="to-begin-with" class="anchor"></div>
+<h1 class="relative group">To begin with 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#to-begin-with" aria-label="Anchor">#</a></span>        
+    
+</h1>
+<p>We need the following files for the data processing.</p>
+<ol>
+<li>TIF data of nightlight</li>
+<li>Shp files are needed to identify the study area</li>
+<li>Data description
+<ul>
+<li>4.1 shp files of administrative division in Japan, suppose the file name is <code>jpn_adm</code></li>
+<li>4.2 shp files link: <a href="https://data.humdata.org/dataset/cod-ab-jpn"   target="_blank">
+    https://data.humdata.org/dataset/cod-ab-jpn</a></li>
+<li>4.3 nightlight tif data in Japan during 2018/09/05&ndash;2018/09/07, suppose the file name is <code>traildata_japan</code></li>
+<li>4.4 data link: <a href="https://eogdata.mines.edu/nighttime_light/nightly/rade9d/"   target="_blank">
+    https://eogdata.mines.edu/nighttime_light/nightly/rade9d/</a></li>
+</ul>
+</li>
+</ol>
+<div id="example-using-trail-data" class="anchor"></div>
+<h1 class="relative group">Example using trail data 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#example-using-trail-data" aria-label="Anchor">#</a></span>        
+    
+</h1>
+<div id="setting-and-checking" class="anchor"></div>
+<h2 class="relative group">Setting and checking 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#setting-and-checking" aria-label="Anchor">#</a></span>        
+    
+</h2>
+<p>Daily nightlight tif files during 2018/09/05&ndash;2018/09/07 in will be used to show how to create prefecture-level panel data using R. Before that, check the nightlight data and geo data at first</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># load tif file using &#39;rast&#39; code in package &#39;terra&#39;
+</span></span><span class="line"><span class="cl">rast(&#34;trialdata_japan/SVDNB_npp_d20180905.rade9d.tif&#34;) -&gt; nightlight
+</span></span><span class="line"><span class="cl">nightlight # this is global data
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># load shp file
+</span></span><span class="line"><span class="cl">read_sf(&#34;jpn_adm/jpn_admbnda_adm1_2019.shp&#34;) -&gt; pref
+</span></span><span class="line"><span class="cl">pref
+</span></span><span class="line"><span class="cl">vect(pref) -&gt; pref
+</span></span><span class="line"><span class="cl">pref
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># check files in folder &#39;trialdata_japan&#39;, save the folder as &#39;datafile&#39;
+</span></span><span class="line"><span class="cl">dir_ls(&#34;trialdata_japan&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  as.character() %&gt;% 
+</span></span><span class="line"><span class="cl">  as_tibble() %&gt;% 
+</span></span><span class="line"><span class="cl">  mutate(date = lubridate::ymd(str_match(basename(value), &#34;\\d{8}&#34;)[,1])) %&gt;% 
+</span></span><span class="line"><span class="cl">  arrange(date) -&gt; datafile 
+</span></span></code></pre></div><p>File <code>trialdata_japan/SVDNB_npp_d20180905.rade9d.tif</code>, which is saved as df1, will be used an example to show the detailed steps to process nightlight tif data, while later loop will be used to operate all the nightlight files. R code file <code>main.R</code> will show how to use loop to deal with all the files at once on both prefecture and municipality levels</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># check the name of the first file and save it as df1
+</span></span><span class="line"><span class="cl">datafile$value[1] 
+</span></span><span class="line"><span class="cl">rast(datafile$value[1] ) -&gt; df1
+</span></span></code></pre></div><div id="create-a-panel-data" class="anchor"></div>
+<h2 class="relative group">Create a panel data 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#create-a-panel-data" aria-label="Anchor">#</a></span>        
+    
+</h2>
+<blockquote>
+<p>Step 1: Load country, prefecture, municipality shp files</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">read_sf(&#34;jpn_adm/jpn_admbnda_adm0_2019.shp&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  st_transform(4326) -&gt; jp
+</span></span><span class="line"><span class="cl">jp
+</span></span><span class="line"><span class="cl">read_sf(&#34;jpn_adm/jpn_admbnda_adm1_2019.shp&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  st_transform(4326) -&gt; pref
+</span></span><span class="line"><span class="cl">pref
+</span></span><span class="line"><span class="cl">read_sf(&#34;jpn_adm/jpn_admbnda_adm2_2019.shp&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  st_transform(4326) -&gt; municipal
+</span></span><span class="line"><span class="cl">municipal
+</span></span></code></pre></div><blockquote>
+<p>Step 2: Use a function to calculate the statistics of the nightlight data</p>
+</blockquote>
+<p><font size="3" color="red"> <em><strong>This is an example using one data file</strong></em> </font></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># write shp data to rds data for later use
+</span></span><span class="line"><span class="cl">jp %&gt;%
+</span></span><span class="line"><span class="cl">  write_rds(&#34;jp.rds&#34;) 
+</span></span><span class="line"><span class="cl"># change the data to spatial vectors
+</span></span><span class="line"><span class="cl">vect(jp) -&gt; jp
+</span></span><span class="line"><span class="cl"># cut out the data of japan, note that this step will take time
+</span></span><span class="line"><span class="cl">df1 %&gt;% 
+</span></span><span class="line"><span class="cl">  terra::mask(jp) %&gt;% 
+</span></span><span class="line"><span class="cl">  terra::crop(jp) -&gt; jpdf1
+</span></span><span class="line"><span class="cl"># check if there are extreme values using summary, such as value <span class="p">&lt;</span> <span class="nt">0</span>
+</span></span><span class="line"><span class="cl"><span class="na">summary</span><span class="err">(</span><span class="na">jpdf1</span><span class="err">)</span> 
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="na">plot</span> <span class="na">the</span> <span class="na">data</span> <span class="na">of</span> <span class="na">japan</span> <span class="na">roughly</span>
+</span></span><span class="line"><span class="cl"><span class="na">raster::plot</span><span class="err">(</span><span class="na">jpdf1</span><span class="err">)</span> 
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># calculate the mean value of nightlight by province
+</span></span><span class="line"><span class="cl">vect(pref) -&gt; pref 
+</span></span><span class="line"><span class="cl">terra::extract(jpdf1, pref, fun = &#34;mean&#34;, na.rm = T) -&gt; pref_mean
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># load the pref data again because spatial vectors cannot be used for merge
+</span></span><span class="line"><span class="cl">read_sf(&#34;jpn_adm/jpn_admbnda_adm1_2019.shp&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  st_transform(4326) -&gt; pref
+</span></span><span class="line"><span class="cl">pref %&gt;% 
+</span></span><span class="line"><span class="cl">  bind_cols(pref_mean) -&gt; pref_mean
+</span></span><span class="line"><span class="cl"># check data (variables and data type)
+</span></span><span class="line"><span class="cl">pref_mean # mean value of nightlight data by prefecture in 2018/09/05
+</span></span></code></pre></div><blockquote>
+<p>Step 3: Use loop to process all the files in folder `trialdata_japan'</p>
+</blockquote>
+<p>In this step, package <code>parallel</code> is used to operate the codes by multiple lines.
+This loop will calculate the mean value of nightlight data on the prefecture level and municipality level</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># create new folders to save data
+</span></span><span class="line"><span class="cl">dir.create(&#34;pref&#34;) # create a new file named &#39;pref&#39;
+</span></span><span class="line"><span class="cl">dir.create(&#34;municipal&#34;) # create a new file named &#39;municipal&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># loop to create prefecture and municipality level data
+</span></span><span class="line"><span class="cl">library(parallel) # multiple operation when data amount is large
+</span></span><span class="line"><span class="cl">makeCluster(3) -&gt; cl # employ 3 operations at the same time
+</span></span><span class="line"><span class="cl">clusterExport(cl, &#34;pref&#34;) 
+</span></span><span class="line"><span class="cl">clusterExport(cl, &#34;municipal&#34;) 
+</span></span><span class="line"><span class="cl">clusterExport(cl, &#34;jp&#34;) 
+</span></span><span class="line"><span class="cl">clusterExport(cl, &#34;%&gt;%&#34;)
+</span></span><span class="line"><span class="cl">clusterExport(cl, &#34;datafile&#34;)
+</span></span><span class="line"><span class="cl">parLapply(cl, 1:nrow(datafile), function(x){ 
+</span></span><span class="line"><span class="cl">  if(!file.exists(paste0(&#34;pref/&#34;, datafile$date[x], &#34;.rds&#34;))) { 
+</span></span><span class="line"><span class="cl">    library(terra)
+</span></span><span class="line"><span class="cl">    jp <span class="p">&lt;</span><span class="nt">-</span> <span class="na">terra::vect</span><span class="err">(</span><span class="na">sf::st_sf</span><span class="err">(</span><span class="na">jp</span><span class="err">))</span> <span class="err">#</span> <span class="na">change</span> <span class="na">jp</span> <span class="na">data</span> <span class="na">to</span> <span class="na">spatial</span> <span class="na">vectors</span>
+</span></span><span class="line"><span class="cl">    <span class="na">terra::rast</span><span class="err">(</span><span class="na">datafile</span><span class="err">$</span><span class="na">value</span><span class="err">[</span><span class="na">x</span><span class="err">])</span> <span class="na">-</span><span class="p">&gt;</span> nightlight 
+</span></span><span class="line"><span class="cl">    nightlight %&gt;%  # cut out japan for each tif file
+</span></span><span class="line"><span class="cl">    terra::crop(jp) %&gt;% 
+</span></span><span class="line"><span class="cl">    terra::mask(jp) -&gt; nightlight
+</span></span><span class="line"><span class="cl">    nightlight[nightlight <span class="p">&lt;</span> <span class="nt">0</span><span class="err">]</span> <span class="err">&lt;</span><span class="na">-</span> <span class="na">NA</span>  <span class="err">#</span> <span class="na">rule</span> <span class="na">out</span> <span class="na">unreasonable</span> <span class="na">or</span> <span class="na">extreme</span> <span class="na">values</span>
+</span></span><span class="line"><span class="cl">    <span class="na">nightlight</span><span class="err">[</span><span class="na">nightlight</span> <span class="p">&gt;</span> 1000] <span class="p">&lt;</span><span class="nt">-</span> <span class="na">NA</span> 
+</span></span><span class="line"><span class="cl">    <span class="na">nightlight</span> <span class="err">%</span><span class="p">&gt;</span>% # calculate mean values on the prefecture level
+</span></span><span class="line"><span class="cl">    terra::extract(terra::vect(pref), fun = mean, na.rm = T) %&gt;% 
+</span></span><span class="line"><span class="cl">    tidyr::as_tibble() %&gt;% 
+</span></span><span class="line"><span class="cl">    dplyr::mutate(year = x) %&gt;% 
+</span></span><span class="line"><span class="cl">    readr::write_rds(paste0(&#34;pref/&#34;, datafile$date[x], &#34;.rds&#34;)) # save rds file by date
+</span></span><span class="line"><span class="cl">    nightlight %&gt;% # calculate mean values on the municipality level
+</span></span><span class="line"><span class="cl">    terra::extract(terra::vect(municipal), fun = mean, na.rm = T) %&gt;% 
+</span></span><span class="line"><span class="cl">    tidyr::as_tibble() %&gt;% 
+</span></span><span class="line"><span class="cl">    dplyr::mutate(year = x) %&gt;% 
+</span></span><span class="line"><span class="cl">    readr::write_rds(paste0(&#34;municipal/&#34;, datafile$date[x], &#34;.rds&#34;)) 
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    }) -&gt; nightlight_1 
+</span></span></code></pre></div><blockquote>
+<p>Step 4: Data combination after loop</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># load shp files again
+</span></span><span class="line"><span class="cl">library(sf) 
+</span></span><span class="line"><span class="cl">read_sf(&#34;jpn_adm/jpn_admbnda_adm0_2019.shp&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  st_transform(4326) -&gt; jp
+</span></span><span class="line"><span class="cl">read_sf(&#34;jpn_adm/jpn_admbnda_adm1_2019.shp&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  st_transform(4326) -&gt; pref
+</span></span><span class="line"><span class="cl">read_sf(&#34;jpn_adm/jpn_admbnda_adm2_2019.shp&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  st_transform(4326) -&gt; municipal
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># combine nightlight data by date
+</span></span><span class="line"><span class="cl">library(tidyverse)
+</span></span><span class="line"><span class="cl">lapply(fs::dir_ls(&#34;pref&#34;), FUN = function(x){
+</span></span><span class="line"><span class="cl">  readr::read_rds(x) %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(-year)  # delete variable &#39;year&#39;
+</span></span><span class="line"><span class="cl">  }) %&gt;% 
+</span></span><span class="line"><span class="cl">  bind_cols() %&gt;% # combine by column
+</span></span><span class="line"><span class="cl">  dplyr::select(-contains(&#34;ID&#34;)) %&gt;%   # delete variables contain &#39;ID&#39;
+</span></span><span class="line"><span class="cl">  mutate(ID = as.numeric(row.names(.))) %&gt;%  # add new numeric variable &#39;ID&#39;
+</span></span><span class="line"><span class="cl">  dplyr::select(ID, everything()) %&gt;% 
+</span></span><span class="line"><span class="cl">  gather(-ID, key = &#34;key&#34;, value = &#34;value&#34;) %&gt;% # reshape data frame
+</span></span><span class="line"><span class="cl">  mutate(date = lubridate::ymd(str_match(basename(key), &#34;\\d{8}&#34;)[,1])) %&gt;% # add &#39;date&#39;
+</span></span><span class="line"><span class="cl">  dplyr::select(-key) -&gt; prefdf # save data as &#39;prefdf&#39;
+</span></span><span class="line"><span class="cl"># check the data
+</span></span><span class="line"><span class="cl">prefdf
+</span></span></code></pre></div><blockquote>
+<p>Step 5: Write dataset to xlsx/dta file</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># merge nightlight data with pref data and write to excel data
+</span></span><span class="line"><span class="cl">prefdf %&gt;% 
+</span></span><span class="line"><span class="cl">  left_join(
+</span></span><span class="line"><span class="cl">    pref %&gt;% 
+</span></span><span class="line"><span class="cl">      st_drop_geometry() %&gt;% 
+</span></span><span class="line"><span class="cl">      mutate(ID = as.numeric(row.names(.)))
+</span></span><span class="line"><span class="cl">  ) %&gt;%  # merge pref data to the left side of prefdf data using &#39;left_join&#39;
+</span></span><span class="line"><span class="cl">  dplyr::select(-ID) %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(date, ADM1_EN,  ADM1_JA,  ADM1_PCODE, 
+</span></span><span class="line"><span class="cl">                nightlight_mean = value) %&gt;%   # select variables to keep and reorder 
+</span></span><span class="line"><span class="cl">  writexl::write_xlsx(&#34;nightlight_pref.xlsx&#34;) # write to excel file
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">prefdf %&gt;% 
+</span></span><span class="line"><span class="cl">  left_join(
+</span></span><span class="line"><span class="cl">    pref %&gt;% 
+</span></span><span class="line"><span class="cl">      st_drop_geometry() %&gt;% 
+</span></span><span class="line"><span class="cl">      mutate(ID = as.numeric(row.names(.)))
+</span></span><span class="line"><span class="cl">  ) %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(-ID) %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(date, ADM1_EN,  ADM1_JA,  ADM1_PCODE, 
+</span></span><span class="line"><span class="cl">                nightlight_mean = value) %&gt;% 
+</span></span><span class="line"><span class="cl">  haven::write_dta(&#34;nightlight_pref.dta&#34;) # write to dta file
+</span></span></code></pre></div><blockquote>
+<p>Step 6: Repeat steps 4 and 5 to output municipality level data</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">lapply(fs::dir_ls(&#34;municipal&#34;), FUN = function(x){
+</span></span><span class="line"><span class="cl">  readr::read_rds(x) %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(-year)
+</span></span><span class="line"><span class="cl">}) %&gt;% 
+</span></span><span class="line"><span class="cl">  bind_cols() %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(-contains(&#34;ID&#34;)) %&gt;% 
+</span></span><span class="line"><span class="cl">  mutate(ID = as.numeric(row.names(.))) %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(ID, everything()) %&gt;% 
+</span></span><span class="line"><span class="cl">  gather(-ID, key = &#34;key&#34;, value = &#34;value&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  mutate(date = lubridate::ymd(str_match(basename(key), &#34;\\d{8}&#34;)[,1])) %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(-key) -&gt; municipaldf 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">municipaldf 
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">municipaldf %&gt;% 
+</span></span><span class="line"><span class="cl">  left_join(
+</span></span><span class="line"><span class="cl">    municipal %&gt;% 
+</span></span><span class="line"><span class="cl">      st_drop_geometry() %&gt;%  
+</span></span><span class="line"><span class="cl">      mutate(ID = as.numeric(row.names(.)))
+</span></span><span class="line"><span class="cl">  ) %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(-ID) %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(date, ADM1_EN,  ADM1_JA,  ADM1_PCODE,
+</span></span><span class="line"><span class="cl">                ADM2_EN,  ADM2_JA,  ADM2_PCODE,
+</span></span><span class="line"><span class="cl">                nightlight_mean = value) %&gt;% 
+</span></span><span class="line"><span class="cl">  writexl::write_xlsx(&#34;nightlight_municipal.xlsx&#34;)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">municipaldf %&gt;% 
+</span></span><span class="line"><span class="cl">  left_join(  
+</span></span><span class="line"><span class="cl">    municipal %&gt;% 
+</span></span><span class="line"><span class="cl">      st_drop_geometry() %&gt;% 
+</span></span><span class="line"><span class="cl">      mutate(ID = as.numeric(row.names(.)))
+</span></span><span class="line"><span class="cl">  ) %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(-ID) %&gt;% 
+</span></span><span class="line"><span class="cl">  dplyr::select(date, ADM1_EN,  ADM1_JA,  ADM1_PCODE, 
+</span></span><span class="line"><span class="cl">                ADM2_EN,  ADM2_JA,  ADM2_PCODE,
+</span></span><span class="line"><span class="cl">                nightlight_mean = value) %&gt;% 
+</span></span><span class="line"><span class="cl">  haven::write_dta(&#34;nightlight_municipal.dta&#34;)
+</span></span></code></pre></div><div id="plot-to-check" class="anchor"></div>
+<h2 class="relative group">Plot to check 
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#plot-to-check" aria-label="Anchor">#</a></span>        
+    
+</h2>
+<blockquote>
+<p>nightlight distributed by municipality</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">library(ggplot2)
+</span></span><span class="line"><span class="cl">library(ggspatial)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">read_sf(&#34;jpn_adm/jpn_admbnda_adm2_2019.shp&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  st_transform(4326) -&gt; municipal
+</span></span><span class="line"><span class="cl">readxl::read_xlsx(&#34;nightlight_municipal.xlsx&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  mutate(date = lubridate::ymd(date)) -&gt; mydf1 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">municipal %&gt;% 
+</span></span><span class="line"><span class="cl">  left_join(mydf1) %&gt;% 
+</span></span><span class="line"><span class="cl">  ggplot() + 
+</span></span><span class="line"><span class="cl">  geom_sf(aes(fill = nightlight_mean), size = 0.001,
+</span></span><span class="line"><span class="cl">          linewidth = 0.001, 
+</span></span><span class="line"><span class="cl">          color = &#34;white&#34;) +  
+</span></span><span class="line"><span class="cl">  facet_wrap(~ date, nrow = 1) + 
+</span></span><span class="line"><span class="cl">  scico::scale_fill_scico(
+</span></span><span class="line"><span class="cl">  palette = &#34;lajolla&#34;, trans = &#34;log10&#34;, name=&#34;nightlight&#34;) +
+</span></span><span class="line"><span class="cl">  scale_x_continuous(expand = c(0.001, 0.001)) +
+</span></span><span class="line"><span class="cl">  scale_y_continuous(expand = c(0.001, 0.001)) + 
+</span></span><span class="line"><span class="cl">  theme(axis.title.x = element_blank(),
+</span></span><span class="line"><span class="cl">        axis.title.y = element_blank(), 
+</span></span><span class="line"><span class="cl">        strip.text = element_text(colour = &#34;gray30&#34;,
+</span></span><span class="line"><span class="cl">                                  hjust = 0.5),
+</span></span><span class="line"><span class="cl">        legend.position = &#34;bottom&#34;,
+</span></span><span class="line"><span class="cl">        plot.margin = unit(rep(0.5, 4), &#34;cm&#34;),
+</span></span><span class="line"><span class="cl">        panel.grid.major = element_blank()) + 
+</span></span><span class="line"><span class="cl">  guides(fill = guide_legend(nrow = 1,
+</span></span><span class="line"><span class="cl">                             title.position = &#34;top&#34;,
+</span></span><span class="line"><span class="cl">                             title.hjust = 0.5,
+</span></span><span class="line"><span class="cl">                             label.position = &#34;top&#34;)) 
+</span></span><span class="line"><span class="cl"># &gt; save as g_municipal and output jpg
+</span></span><span class="line"><span class="cl"># ggsave(&#34;municipalmap.jpg&#34;, g_municipal)
+</span></span></code></pre></div>
+
+  
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+      <figure >
+        
           
+          <img
+            class="my-0 rounded-md"
+            srcset="
+            /prefmap_hud82e688837c341f9230330e610caae97_322459_330x0_resize_q75_box.jpg 330w,
+            /prefmap_hud82e688837c341f9230330e610caae97_322459_660x0_resize_q75_box.jpg 660w,
+            /prefmap_hud82e688837c341f9230330e610caae97_322459_1024x0_resize_q75_box.jpg 1024w,
+            /prefmap_hud82e688837c341f9230330e610caae97_322459_1320x0_resize_q75_box.jpg 2x"
+            src="/prefmap_hud82e688837c341f9230330e610caae97_322459_660x0_resize_q75_box.jpg"
+            alt=""
+          />
+          
+        
+        <figcaption>Nightlight intensity by prefecture</figcaption>
+      </figure>
+    
+  
+
+
+<blockquote>
+<p>nightlight distributed by prefecture</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">library(ggspatial)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">read_sf(&#34;jpn_adm/jpn_admbnda_adm1_2019.shp&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  st_transform(4326) -&gt; pref
+</span></span><span class="line"><span class="cl">readxl::read_xlsx(&#34;nightlight_pref.xlsx&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  mutate(date = lubridate::ymd(date)) -&gt; mydfpref1 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">pref %&gt;% 
+</span></span><span class="line"><span class="cl">  left_join(mydfpref1 ) %&gt;%
+</span></span><span class="line"><span class="cl">  ggplot() + 
+</span></span><span class="line"><span class="cl">  geom_sf(aes(fill = nightlight_mean), size = 0.001,
+</span></span><span class="line"><span class="cl">          linewidth = 0.001, 
+</span></span><span class="line"><span class="cl">          color = &#34;white&#34;) +  
+</span></span><span class="line"><span class="cl">  facet_wrap(~ date, nrow = 1) + 
+</span></span><span class="line"><span class="cl">  scico::scale_fill_scico(
+</span></span><span class="line"><span class="cl">  palette = &#34;lajolla&#34;, trans = &#34;log10&#34;, name=&#34;nightlight&#34;) +
+</span></span><span class="line"><span class="cl">  scale_x_continuous(expand = c(0.001, 0.001)) +
+</span></span><span class="line"><span class="cl">  scale_y_continuous(expand = c(0.001, 0.001)) + 
+</span></span><span class="line"><span class="cl">  theme(axis.title.x = element_blank(),
+</span></span><span class="line"><span class="cl">        axis.title.y = element_blank(), 
+</span></span><span class="line"><span class="cl">        strip.text = element_text(colour = &#34;gray30&#34;,
+</span></span><span class="line"><span class="cl">                                  hjust = 0.5),
+</span></span><span class="line"><span class="cl">        legend.position = &#34;bottom&#34;,
+</span></span><span class="line"><span class="cl">        plot.margin = unit(rep(0.5, 4), &#34;cm&#34;),
+</span></span><span class="line"><span class="cl">        panel.grid.major = element_blank()) + 
+</span></span><span class="line"><span class="cl">  guides(fill = guide_legend(nrow = 1,
+</span></span><span class="line"><span class="cl">                             title.position = &#34;top&#34;,
+</span></span><span class="line"><span class="cl">                             title.hjust = 0.5,
+</span></span><span class="line"><span class="cl">                             label.position = &#34;top&#34;)) 
+</span></span><span class="line"><span class="cl"># &gt; save as g_pref and output jpg
+</span></span><span class="line"><span class="cl"># ggsave(&#34;prefmap.jpg&#34;, g_pref)
+</span></span></code></pre></div>
+
+  
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+      <figure >
+        
+          
+          <img
+            class="my-0 rounded-md"
+            srcset="
+            /municipalmap_hud82e688837c341f9230330e610caae97_338658_330x0_resize_q75_box.jpg 330w,
+            /municipalmap_hud82e688837c341f9230330e610caae97_338658_660x0_resize_q75_box.jpg 660w,
+            /municipalmap_hud82e688837c341f9230330e610caae97_338658_1024x0_resize_q75_box.jpg 1024w,
+            /municipalmap_hud82e688837c341f9230330e610caae97_338658_1320x0_resize_q75_box.jpg 2x"
+            src="/municipalmap_hud82e688837c341f9230330e610caae97_338658_660x0_resize_q75_box.jpg"
+            alt=""
+          />
+          
+        
+        <figcaption>Nightlight intensity by municipality</figcaption>
+      </figure>
+    
+  
+
+
+
         </div>
                 
         
@@ -874,6 +1265,26 @@
         </span>
         <span>
           
+            <a class="flex text-right group ml-3" href="/posts/2023-4/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Data Analysis for Sustainability Science using R</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
         </span>
       </div>
     </div>
@@ -884,7 +1295,13 @@
   </footer>
 </article>
 
-      
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div>
     </main><footer id="site-footer" class="py-10 print:hidden">
   
   
@@ -907,7 +1324,7 @@
     
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
       &copy;
-      2023
+      2024
       Jie Yang
     </p>
     
