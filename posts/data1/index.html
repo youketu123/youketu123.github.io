@@ -97,7 +97,7 @@
     "keywords": ["Stata","R"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1208"
+    "wordCount": "1209"
   }]
   </script>
 
@@ -761,7 +761,7 @@
 </span></span><span class="line"><span class="cl">  as_tibble() %&gt;% 
 </span></span><span class="line"><span class="cl">  mutate(date = lubridate::ymd(str_match(basename(value), &#34;\\d{8}&#34;)[,1])) %&gt;% 
 </span></span><span class="line"><span class="cl">  arrange(date) -&gt; datafile 
-</span></span></code></pre></div><p>File <code>trialdata_japan/SVDNB_npp_d20180905.rade9d.tif</code>, which is saved as df1, will be used an example to show the detailed steps to process nightlight tif data, while later loop will be used to operate all the nightlight files. R code file <code>main.R</code> will show how to use loop to deal with all the files at once on both prefecture and municipality levels</p>
+</span></span></code></pre></div><p>File <code>trialdata_japan/SVDNB_npp_d20180905.rade9d.tif</code>, which is saved as df1, will be used an example to show the detailed steps to process nightlight tif data, while later loop will be used to operate all the nightlight files. The following R codes will also show how to use loop to deal with all the files at once on both prefecture and municipality levels</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># check the name of the first file and save it as df1
 </span></span><span class="line"><span class="cl">datafile$value[1] 
 </span></span><span class="line"><span class="cl">rast(datafile$value[1] ) -&gt; df1
@@ -823,7 +823,8 @@ This loop will calculate the mean value of nightlight data on the prefecture lev
 </span></span><span class="line"><span class="cl">dir.create(&#34;municipal&#34;) # create a new file named &#39;municipal&#39;
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"># loop to create prefecture and municipality level data
-</span></span><span class="line"><span class="cl">library(parallel) # multiple operation when data amount is large
+</span></span><span class="line"><span class="cl"># multiple operation when data amount is large
+</span></span><span class="line"><span class="cl">library(parallel) 
 </span></span><span class="line"><span class="cl">makeCluster(3) -&gt; cl # employ 3 operations at the same time
 </span></span><span class="line"><span class="cl">clusterExport(cl, &#34;pref&#34;) 
 </span></span><span class="line"><span class="cl">clusterExport(cl, &#34;municipal&#34;) 
@@ -833,18 +834,22 @@ This loop will calculate the mean value of nightlight data on the prefecture lev
 </span></span><span class="line"><span class="cl">parLapply(cl, 1:nrow(datafile), function(x){ 
 </span></span><span class="line"><span class="cl">  if(!file.exists(paste0(&#34;pref/&#34;, datafile$date[x], &#34;.rds&#34;))) { 
 </span></span><span class="line"><span class="cl">    library(terra)
-</span></span><span class="line"><span class="cl">    jp <span class="p">&lt;</span><span class="nt">-</span> <span class="na">terra::vect</span><span class="err">(</span><span class="na">sf::st_sf</span><span class="err">(</span><span class="na">jp</span><span class="err">))</span> <span class="err">#</span> <span class="na">change</span> <span class="na">jp</span> <span class="na">data</span> <span class="na">to</span> <span class="na">spatial</span> <span class="na">vectors</span>
+</span></span><span class="line"><span class="cl">    # change jp data to spatial vectors
+</span></span><span class="line"><span class="cl">    jp <span class="p">&lt;</span><span class="nt">-</span> <span class="na">terra::vect</span><span class="err">(</span><span class="na">sf::st_sf</span><span class="err">(</span><span class="na">jp</span><span class="err">))</span> 
 </span></span><span class="line"><span class="cl">    <span class="na">terra::rast</span><span class="err">(</span><span class="na">datafile</span><span class="err">$</span><span class="na">value</span><span class="err">[</span><span class="na">x</span><span class="err">])</span> <span class="na">-</span><span class="p">&gt;</span> nightlight 
-</span></span><span class="line"><span class="cl">    nightlight %&gt;%  # cut out japan for each tif file
+</span></span><span class="line"><span class="cl">    # cut out japan for each tif file
+</span></span><span class="line"><span class="cl">    nightlight %&gt;%  
 </span></span><span class="line"><span class="cl">    terra::crop(jp) %&gt;% 
 </span></span><span class="line"><span class="cl">    terra::mask(jp) -&gt; nightlight
-</span></span><span class="line"><span class="cl">    nightlight[nightlight <span class="p">&lt;</span> <span class="nt">0</span><span class="err">]</span> <span class="err">&lt;</span><span class="na">-</span> <span class="na">NA</span>  <span class="err">#</span> <span class="na">rule</span> <span class="na">out</span> <span class="na">unreasonable</span> <span class="na">or</span> <span class="na">extreme</span> <span class="na">values</span>
+</span></span><span class="line"><span class="cl">    # rule out unreasonable or extreme values
+</span></span><span class="line"><span class="cl">    nightlight[nightlight <span class="p">&lt;</span> <span class="nt">0</span><span class="err">]</span> <span class="err">&lt;</span><span class="na">-</span> <span class="na">NA</span>  
 </span></span><span class="line"><span class="cl">    <span class="na">nightlight</span><span class="err">[</span><span class="na">nightlight</span> <span class="p">&gt;</span> 1000] <span class="p">&lt;</span><span class="nt">-</span> <span class="na">NA</span> 
 </span></span><span class="line"><span class="cl">    <span class="na">nightlight</span> <span class="err">%</span><span class="p">&gt;</span>% # calculate mean values on the prefecture level
 </span></span><span class="line"><span class="cl">    terra::extract(terra::vect(pref), fun = mean, na.rm = T) %&gt;% 
 </span></span><span class="line"><span class="cl">    tidyr::as_tibble() %&gt;% 
 </span></span><span class="line"><span class="cl">    dplyr::mutate(year = x) %&gt;% 
-</span></span><span class="line"><span class="cl">    readr::write_rds(paste0(&#34;pref/&#34;, datafile$date[x], &#34;.rds&#34;)) # save rds file by date
+</span></span><span class="line"><span class="cl">    # save rds file by date
+</span></span><span class="line"><span class="cl">    readr::write_rds(paste0(&#34;pref/&#34;, datafile$date[x], &#34;.rds&#34;)) 
 </span></span><span class="line"><span class="cl">    nightlight %&gt;% # calculate mean values on the municipality level
 </span></span><span class="line"><span class="cl">    terra::extract(terra::vect(municipal), fun = mean, na.rm = T) %&gt;% 
 </span></span><span class="line"><span class="cl">    tidyr::as_tibble() %&gt;% 
@@ -866,15 +871,20 @@ This loop will calculate the mean value of nightlight data on the prefecture lev
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># combine nightlight data by date
 </span></span><span class="line"><span class="cl">library(tidyverse)
 </span></span><span class="line"><span class="cl">lapply(fs::dir_ls(&#34;pref&#34;), FUN = function(x){
-</span></span><span class="line"><span class="cl">  readr::read_rds(x) %&gt;% 
-</span></span><span class="line"><span class="cl">  dplyr::select(-year)  # delete variable &#39;year&#39;
+</span></span><span class="line"><span class="cl">  readr::read_rds(x) %&gt;%
+</span></span><span class="line"><span class="cl">  # delete variable &#39;year&#39; 
+</span></span><span class="line"><span class="cl">  dplyr::select(-year)  
 </span></span><span class="line"><span class="cl">  }) %&gt;% 
 </span></span><span class="line"><span class="cl">  bind_cols() %&gt;% # combine by column
-</span></span><span class="line"><span class="cl">  dplyr::select(-contains(&#34;ID&#34;)) %&gt;%   # delete variables contain &#39;ID&#39;
-</span></span><span class="line"><span class="cl">  mutate(ID = as.numeric(row.names(.))) %&gt;%  # add new numeric variable &#39;ID&#39;
+</span></span><span class="line"><span class="cl">  # delete variables contain &#39;ID&#39;
+</span></span><span class="line"><span class="cl">  dplyr::select(-contains(&#34;ID&#34;)) %&gt;%  
+</span></span><span class="line"><span class="cl">  # add new numeric variable &#39;ID&#39; 
+</span></span><span class="line"><span class="cl">  mutate(ID = as.numeric(row.names(.))) %&gt;%  
 </span></span><span class="line"><span class="cl">  dplyr::select(ID, everything()) %&gt;% 
-</span></span><span class="line"><span class="cl">  gather(-ID, key = &#34;key&#34;, value = &#34;value&#34;) %&gt;% # reshape data frame
-</span></span><span class="line"><span class="cl">  mutate(date = lubridate::ymd(str_match(basename(key), &#34;\\d{8}&#34;)[,1])) %&gt;% # add &#39;date&#39;
+</span></span><span class="line"><span class="cl">  # reshape data frame
+</span></span><span class="line"><span class="cl">  gather(-ID, key = &#34;key&#34;, value = &#34;value&#34;) %&gt;% 
+</span></span><span class="line"><span class="cl">  # add &#39;date&#39;
+</span></span><span class="line"><span class="cl">  mutate(date = lubridate::ymd(str_match(basename(key), &#34;\\d{8}&#34;)[,1])) %&gt;% 
 </span></span><span class="line"><span class="cl">  dplyr::select(-key) -&gt; prefdf # save data as &#39;prefdf&#39;
 </span></span><span class="line"><span class="cl"># check the data
 </span></span><span class="line"><span class="cl">prefdf
@@ -882,16 +892,19 @@ This loop will calculate the mean value of nightlight data on the prefecture lev
 <p>Step 5: Write dataset to xlsx/dta file</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># merge nightlight data with pref data and write to excel data
+</span></span><span class="line"><span class="cl">  # merge pref data to the left side of prefdf data using &#39;left_join&#39;
 </span></span><span class="line"><span class="cl">prefdf %&gt;% 
 </span></span><span class="line"><span class="cl">  left_join(
 </span></span><span class="line"><span class="cl">    pref %&gt;% 
 </span></span><span class="line"><span class="cl">      st_drop_geometry() %&gt;% 
 </span></span><span class="line"><span class="cl">      mutate(ID = as.numeric(row.names(.)))
-</span></span><span class="line"><span class="cl">  ) %&gt;%  # merge pref data to the left side of prefdf data using &#39;left_join&#39;
+</span></span><span class="line"><span class="cl">  ) %&gt;%  
 </span></span><span class="line"><span class="cl">  dplyr::select(-ID) %&gt;% 
+</span></span><span class="line"><span class="cl">  # select variables to keep and reorder
 </span></span><span class="line"><span class="cl">  dplyr::select(date, ADM1_EN,  ADM1_JA,  ADM1_PCODE, 
-</span></span><span class="line"><span class="cl">                nightlight_mean = value) %&gt;%   # select variables to keep and reorder 
-</span></span><span class="line"><span class="cl">  writexl::write_xlsx(&#34;nightlight_pref.xlsx&#34;) # write to excel file
+</span></span><span class="line"><span class="cl">                nightlight_mean = value) %&gt;%  
+</span></span><span class="line"><span class="cl">  # write to excel file  
+</span></span><span class="line"><span class="cl">  writexl::write_xlsx(&#34;nightlight_pref.xlsx&#34;) 
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">prefdf %&gt;% 
 </span></span><span class="line"><span class="cl">  left_join(
 </span></span><span class="line"><span class="cl">    pref %&gt;% 
@@ -901,7 +914,8 @@ This loop will calculate the mean value of nightlight data on the prefecture lev
 </span></span><span class="line"><span class="cl">  dplyr::select(-ID) %&gt;% 
 </span></span><span class="line"><span class="cl">  dplyr::select(date, ADM1_EN,  ADM1_JA,  ADM1_PCODE, 
 </span></span><span class="line"><span class="cl">                nightlight_mean = value) %&gt;% 
-</span></span><span class="line"><span class="cl">  haven::write_dta(&#34;nightlight_pref.dta&#34;) # write to dta file
+</span></span><span class="line"><span class="cl">  # write to dta file
+</span></span><span class="line"><span class="cl">  haven::write_dta(&#34;nightlight_pref.dta&#34;) 
 </span></span></code></pre></div><blockquote>
 <p>Step 6: Repeat steps 4 and 5 to output municipality level data</p>
 </blockquote>
@@ -1002,16 +1016,16 @@ This loop will calculate the mean value of nightlight data on the prefecture lev
           <img
             class="my-0 rounded-md"
             srcset="
-            /prefmap_hud82e688837c341f9230330e610caae97_322459_330x0_resize_q75_box.jpg 330w,
-            /prefmap_hud82e688837c341f9230330e610caae97_322459_660x0_resize_q75_box.jpg 660w,
-            /prefmap_hud82e688837c341f9230330e610caae97_322459_1024x0_resize_q75_box.jpg 1024w,
-            /prefmap_hud82e688837c341f9230330e610caae97_322459_1320x0_resize_q75_box.jpg 2x"
-            src="/prefmap_hud82e688837c341f9230330e610caae97_322459_660x0_resize_q75_box.jpg"
+            /municipalmap_hud82e688837c341f9230330e610caae97_338658_330x0_resize_q75_box.jpg 330w,
+            /municipalmap_hud82e688837c341f9230330e610caae97_338658_660x0_resize_q75_box.jpg 660w,
+            /municipalmap_hud82e688837c341f9230330e610caae97_338658_1024x0_resize_q75_box.jpg 1024w,
+            /municipalmap_hud82e688837c341f9230330e610caae97_338658_1320x0_resize_q75_box.jpg 2x"
+            src="/municipalmap_hud82e688837c341f9230330e610caae97_338658_660x0_resize_q75_box.jpg"
             alt=""
           />
           
         
-        <figcaption>Nightlight intensity by prefecture</figcaption>
+        <figcaption>Nightlight intensity by municipality</figcaption>
       </figure>
     
   
@@ -1071,16 +1085,16 @@ This loop will calculate the mean value of nightlight data on the prefecture lev
           <img
             class="my-0 rounded-md"
             srcset="
-            /municipalmap_hud82e688837c341f9230330e610caae97_338658_330x0_resize_q75_box.jpg 330w,
-            /municipalmap_hud82e688837c341f9230330e610caae97_338658_660x0_resize_q75_box.jpg 660w,
-            /municipalmap_hud82e688837c341f9230330e610caae97_338658_1024x0_resize_q75_box.jpg 1024w,
-            /municipalmap_hud82e688837c341f9230330e610caae97_338658_1320x0_resize_q75_box.jpg 2x"
-            src="/municipalmap_hud82e688837c341f9230330e610caae97_338658_660x0_resize_q75_box.jpg"
+            /prefmap_hud82e688837c341f9230330e610caae97_322459_330x0_resize_q75_box.jpg 330w,
+            /prefmap_hud82e688837c341f9230330e610caae97_322459_660x0_resize_q75_box.jpg 660w,
+            /prefmap_hud82e688837c341f9230330e610caae97_322459_1024x0_resize_q75_box.jpg 1024w,
+            /prefmap_hud82e688837c341f9230330e610caae97_322459_1320x0_resize_q75_box.jpg 2x"
+            src="/prefmap_hud82e688837c341f9230330e610caae97_322459_660x0_resize_q75_box.jpg"
             alt=""
           />
           
         
-        <figcaption>Nightlight intensity by municipality</figcaption>
+        <figcaption>Nightlight intensity by prefecture</figcaption>
       </figure>
     
   
