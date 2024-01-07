@@ -97,7 +97,7 @@
     "keywords": ["Stata","R"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1209"
+    "wordCount": "1208"
   }]
   </script>
 
@@ -755,8 +755,8 @@
 </span></span><span class="line"><span class="cl">pref
 </span></span><span class="line"><span class="cl">vect(pref) -&gt; pref
 </span></span><span class="line"><span class="cl">pref
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># check files in folder &#39;trialdata_japan&#39;, save the folder as &#39;datafile&#39;
-</span></span><span class="line"><span class="cl">dir_ls(&#34;trialdata_japan&#34;) %&gt;% 
+</span></span></code></pre></div><p>Check files in folder &rsquo;trialdata_japan&rsquo;, save the folder as &lsquo;datafile&rsquo;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">dir_ls(&#34;trialdata_japan&#34;) %&gt;% 
 </span></span><span class="line"><span class="cl">  as.character() %&gt;% 
 </span></span><span class="line"><span class="cl">  as_tibble() %&gt;% 
 </span></span><span class="line"><span class="cl">  mutate(date = lubridate::ymd(str_match(basename(value), &#34;\\d{8}&#34;)[,1])) %&gt;% 
