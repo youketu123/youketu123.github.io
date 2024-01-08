@@ -62,7 +62,7 @@
   
   
   <meta property="og:title" content="Nightlight Data" />
-<meta property="og:description" content="Related R packages # library(terra) # spatial data analysis package library(tidyverse) # data processing package library(sf) # geodata encoding package library(fs) # file system operation package To begin with # We need the following files for the data processing." />
+<meta property="og:description" content="Related R packages # # spatial data analysis package library(terra) # data processing package library(tidyverse) # geodata encoding package library(sf) # file system operation package library(fs) To begin with # We need the following files for the data processing." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://youketu123.github.io/posts/data1/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-07-16T00:00:00+00:00" />
@@ -70,7 +70,7 @@
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Nightlight Data"/>
-<meta name="twitter:description" content="Related R packages # library(terra) # spatial data analysis package library(tidyverse) # data processing package library(sf) # geodata encoding package library(fs) # file system operation package To begin with # We need the following files for the data processing."/>
+<meta name="twitter:description" content="Related R packages # # spatial data analysis package library(terra) # data processing package library(tidyverse) # geodata encoding package library(sf) # file system operation package library(fs) To begin with # We need the following files for the data processing."/>
 
   
   <script type="application/ld+json">
@@ -81,7 +81,7 @@
     "name": "Nightlight Data",
     "headline": "Nightlight Data",
     
-    "abstract": "Related R packages # library(terra) # spatial data analysis package library(tidyverse) # data processing package library(sf) # geodata encoding package library(fs) # file system operation package To begin with # We need the following files for the data processing.",
+    "abstract": "Related R packages # # spatial data analysis package library(terra) # data processing package library(tidyverse) # geodata encoding package library(sf) # file system operation package library(fs) To begin with # We need the following files for the data processing.",
     "inLanguage": "en",
     "url" : "https:\/\/youketu123.github.io\/posts\/data1\/",
     "author" : {
@@ -97,7 +97,7 @@
     "keywords": ["Stata","R"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1208"
+    "wordCount": "1203"
   }]
   </script>
 
@@ -703,10 +703,14 @@
             style="text-decoration-line: none !important;" href="#related-r-packages" aria-label="Anchor">#</a></span>        
     
 </h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">library(terra) # spatial data analysis package
-</span></span><span class="line"><span class="cl">library(tidyverse) # data processing package
-</span></span><span class="line"><span class="cl">library(sf) # geodata encoding package
-</span></span><span class="line"><span class="cl">library(fs) # file system operation package
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># spatial data analysis package
+</span></span><span class="line"><span class="cl">library(terra) 
+</span></span><span class="line"><span class="cl"># data processing package
+</span></span><span class="line"><span class="cl">library(tidyverse) 
+</span></span><span class="line"><span class="cl"># geodata encoding package
+</span></span><span class="line"><span class="cl">library(sf) 
+</span></span><span class="line"><span class="cl"># file system operation package
+</span></span><span class="line"><span class="cl">library(fs) 
 </span></span></code></pre></div><div id="to-begin-with" class="anchor"></div>
 <h1 class="relative group">To begin with 
     <span
@@ -717,14 +721,14 @@
 </h1>
 <p>We need the following files for the data processing.</p>
 <ol>
-<li>TIF data of nightlight</li>
+<li>TIF data of nightlight intensity</li>
 <li>Shp files are needed to identify the study area</li>
 <li>Data description
 <ul>
-<li>4.1 shp files of administrative division in Japan, suppose the file name is <code>jpn_adm</code></li>
+<li>4.1 shp files of administrative division in Japan, name the file <code>jpn_adm</code></li>
 <li>4.2 shp files link: <a href="https://data.humdata.org/dataset/cod-ab-jpn"   target="_blank">
     https://data.humdata.org/dataset/cod-ab-jpn</a></li>
-<li>4.3 nightlight tif data in Japan during 2018/09/05&ndash;2018/09/07, suppose the file name is <code>traildata_japan</code></li>
+<li>4.3 nightlight tif data in Japan during 2018/09/05&ndash;2018/09/07, name the file <code>traildata_japan</code>, this is global data</li>
 <li>4.4 data link: <a href="https://eogdata.mines.edu/nighttime_light/nightly/rade9d/"   target="_blank">
     https://eogdata.mines.edu/nighttime_light/nightly/rade9d/</a></li>
 </ul>
@@ -746,16 +750,16 @@
             style="text-decoration-line: none !important;" href="#setting-and-checking" aria-label="Anchor">#</a></span>        
     
 </h2>
-<p>Daily nightlight tif files during 2018/09/05&ndash;2018/09/07 in will be used to show how to create prefecture-level panel data using R. Before that, check the nightlight data and geo data at first</p>
+<p>Daily nightlight tif files during 2018/09/05&ndash;2018/09/07 will be used to show how to create prefecture-level panel data using R. Before that, check the nightlight data and geo data at first.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># load tif file using &#39;rast&#39; code in package &#39;terra&#39;
 </span></span><span class="line"><span class="cl">rast(&#34;trialdata_japan/SVDNB_npp_d20180905.rade9d.tif&#34;) -&gt; nightlight
-</span></span><span class="line"><span class="cl">nightlight # this is global data
+</span></span><span class="line"><span class="cl">nightlight 
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># load shp file
 </span></span><span class="line"><span class="cl">read_sf(&#34;jpn_adm/jpn_admbnda_adm1_2019.shp&#34;) -&gt; pref
 </span></span><span class="line"><span class="cl">pref
 </span></span><span class="line"><span class="cl">vect(pref) -&gt; pref
 </span></span><span class="line"><span class="cl">pref
-</span></span></code></pre></div><p>Check files in folder &rsquo;trialdata_japan&rsquo;, save the folder as &lsquo;datafile&rsquo;</p>
+</span></span></code></pre></div><p>Check files in folder &rsquo;trialdata_japan&rsquo;, save the folder as &lsquo;datafile&rsquo;.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">dir_ls(&#34;trialdata_japan&#34;) %&gt;% 
 </span></span><span class="line"><span class="cl">  as.character() %&gt;% 
 </span></span><span class="line"><span class="cl">  as_tibble() %&gt;% 
@@ -817,7 +821,7 @@
 <p>Step 3: Use loop to process all the files in folder `trialdata_japan'</p>
 </blockquote>
 <p>In this step, package <code>parallel</code> is used to operate the codes by multiple lines.
-This loop will calculate the mean value of nightlight data on the prefecture level and municipality level</p>
+This loop will calculate the mean value of nightlight data on the prefecture level and municipality level.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"># create new folders to save data
 </span></span><span class="line"><span class="cl">dir.create(&#34;pref&#34;) # create a new file named &#39;pref&#39;
 </span></span><span class="line"><span class="cl">dir.create(&#34;municipal&#34;) # create a new file named &#39;municipal&#39;

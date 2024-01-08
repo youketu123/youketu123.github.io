@@ -36,7 +36,7 @@ Package grf in R </description>
       <pubDate>Sun, 16 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>https://youketu123.github.io/posts/data1/</guid>
-      <description>Related R packages # library(terra) # spatial data analysis package library(tidyverse) # data processing package library(sf) # geodata encoding package library(fs) # file system operation package To begin with # We need the following files for the data processing.</description>
+      <description>Related R packages # # spatial data analysis package library(terra) # data processing package library(tidyverse) # geodata encoding package library(sf) # file system operation package library(fs) To begin with # We need the following files for the data processing.</description>
       
     </item>
     
